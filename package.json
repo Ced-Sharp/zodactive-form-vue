@@ -18,7 +18,7 @@
     "build": "vue-tsc && vite build",
     "dev": "vite",
     "prebuild": "rimraf dist",
-    "publish": "npm run test && npm run build && npm publish",
+    "publish": "npm run test && npm run build && npm version patch",
     "test": "vitest --run",
     "test:watch": "vitest"
   },
