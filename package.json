@@ -1,6 +1,6 @@
 {
   "name": "@zodactive-form/vue",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "CedSharp <cedsharp@outlook.com>",
   "type": "module",
   "files": [
@@ -18,7 +18,7 @@
     "build": "vue-tsc && vite build",
     "dev": "vite",
     "prebuild": "rimraf dist",
-    "publish": "npm run test && npm run build && npm version patch",
+    "deploy": "npm run test && npm run build && npm version patch && npm publish --access public",
     "test": "vitest --run",
     "test:watch": "vitest"
   },
