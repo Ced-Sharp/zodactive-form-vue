@@ -27,7 +27,7 @@
     "zod": "^3.23.8"
   },
   "dependencies": {
-    "@zodactive-form/core": "^0.0.12"
+    "@zodactive-form/core": "^0.0.13"
   },
   "devDependencies": {
     "@testing-library/vue": "^8.1.0",

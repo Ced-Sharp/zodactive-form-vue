@@ -57,7 +57,27 @@ const TestForm = {
       <z-form-field id="email" label="Email" path="email" />
       <z-form-field id="password" label="Password" path="password" />
       <z-form-field id="confirm" label="Confirm Password" path="confirmPassword" />
-      <button id="submit" type="submit">Register</button>
+      <template #actions>
+        <button id="submit" type="submit">Register</button>
+      </template>
+    </z-form>
+  `,
+};
+
+const TestFormWithSlotErrors = {
+	...TestForm,
+	template: `
+    <z-form :form="form" @submit="onSubmit">
+      <z-form-field id="username" label="Username" path="username" />
+      <z-form-field id="email" label="Email" path="email" />
+      <z-form-field id="password" label="Password" path="password" />
+      <z-form-field id="confirm" label="Confirm Password" path="confirmPassword" />
+
+      <template #errors="{ errors }">
+        <ul class="errs">
+          <li v-for="error in errors" :key="error">{{ error }}</li>
+        </ul>
+      </template>
     </z-form>
   `,
 };
@@ -124,6 +144,47 @@ describe("Zodactive Form - Vue - Form Component", () => {
 		const usernameError = username.querySelector("p");
 		expect(usernameError).not.toBeNull();
 		expect(usernameError?.innerHTML).toBe("3!");
+	});
+
+	it("should give errors when validating an invalid form, even if not assigned to a field", async () => {
+		const form = useForm(testSchema);
+		const { container } = render(TestForm, { props: { form } });
+
+		form.assign("username", "test");
+		form.assign("email", "test@test.com");
+		form.assign("password", "123");
+		form.assign("confirmPassword", "321");
+
+		form.validate();
+		await nextTick();
+
+		expect(form.valid.value).toBe(false);
+		expect(form.formErrors.value).toEqual(["P!"]);
+
+		const errors = container.querySelectorAll("form > p");
+		expect(errors).toHaveLength(1);
+		expect(errors[0].innerHTML).toBe("P!");
+	});
+
+	it("should receive the global errors when using the named slot", async () => {
+		const form = useForm(testSchema);
+		const { container } = render(TestFormWithSlotErrors, { props: { form } });
+
+		form.assign("username", "test");
+		form.assign("email", "test@test.com");
+		form.assign("password", "123");
+		form.assign("confirmPassword", "321");
+
+		form.validate();
+		await nextTick();
+
+		expect(form.valid.value).toBe(false);
+		expect(form.formErrors.value).toEqual(["P!"]);
+
+		const errors = container.querySelector("form > ul");
+		expect(errors).not.toBeNull();
+		expect(errors!.children).toHaveLength(1);
+		expect(errors!.children[0].innerHTML).toBe("P!");
 	});
 
 	it("should update field value when updating the form", async () => {
