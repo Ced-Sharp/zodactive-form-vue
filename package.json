@@ -1,47 +1,53 @@
 {
-	"name": "@zodactive-form/vue",
-	"version": "0.0.8",
-	"author": "CedSharp <cedsharp@outlook.com>",
-	"type": "module",
-	"files": [
-		"dist"
-	],
-	"main": "./dist/zodactive-vue.umd.js",
-	"module": "./dist/zodactive-vue.js",
-	"exports": {
-		".": {
-			"import": "./dist/zodactive-vue.js",
-			"require": "./dist/zodactive-vue.umd.js"
-		}
-	},
-	"scripts": {
-		"build": "vue-tsc && vite build",
-		"dev": "vite",
-		"prebuild": "rimraf dist",
-		"deploy": "npm run test && npm run build && npm version patch && npm publish --access public",
-		"test": "vitest --run",
-		"test:watch": "vitest"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/Ced-Sharp/zodactive-form-vue"
-	},
-	"peerDependencies": {
-		"vue": "^3.4.21",
-		"zod": "^3.23.8"
-	},
-	"dependencies": {
-		"@zodactive-form/core": "^0.1.1"
-	},
-	"devDependencies": {
-		"@testing-library/vue": "^8.1.0",
-		"@vitejs/plugin-vue": "^5.0.4",
-		"jsdom": "^24.1.0",
-		"rimraf": "^5.0.7",
-		"typescript": "^5.2.2",
-		"vite": "^5.2.0",
-		"vitest": "^1.6.0",
-		"vue-tsc": "^2.0.6"
-	},
-	"packageManager": "pnpm@9.1.1+sha512.14e915759c11f77eac07faba4d019c193ec8637229e62ec99eefb7cf3c3b75c64447882b7c485142451ee3a6b408059cdfb7b7fa0341b975f12d0f7629c71195"
+  "name": "@zodactive-form/vue",
+  "version": "0.0.7",
+  "author": "CedSharp <cedascsharp@gmail.com>",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/zodactive-vue.umd.js",
+  "module": "./dist/zodactive-vue.js",
+  "types": "./dist/zodactive-form-vue.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/zodactive-vue.js",
+      "require": "./dist/zodactive-vue.umd.js",
+      "types": "./dist/zodactive-form-vue.d.ts"
+    }
+  },
+  "scripts": {
+    "prebuild": "rimraf dist && rimraf types && npm run lint && npm run test",
+    "lint": "biome check src",
+    "build": "vite build && vue-tsc && rollup -c",
+    "test": "vitest --run",
+    "test:watch": "vitest",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ced-Sharp/zodactive-form-vue"
+  },
+  "peerDependencies": {
+    "vue": "^3.4.21",
+    "zod": "^3.23.8"
+  },
+  "dependencies": {
+    "@zodactive-form/core": "^0.1.3"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.8.1",
+    "@testing-library/vue": "^8.1.0",
+    "@types/node": "^20.14.2",
+    "@vitejs/plugin-vue": "^5.0.4",
+    "jsdom": "^24.1.0",
+    "rimraf": "^5.0.7",
+    "rollup": "^4.18.0",
+    "rollup-plugin-dts": "^6.1.1",
+    "typescript": "^5.2.2",
+    "vite": "^5.2.0",
+    "vitest": "^1.6.0",
+    "vue-tsc": "^2.0.6"
+  },
+  "packageManager": "pnpm@9.1.1+sha512.14e915759c11f77eac07faba4d019c193ec8637229e62ec99eefb7cf3c3b75c64447882b7c485142451ee3a6b408059cdfb7b7fa0341b975f12d0f7629c71195"
 }
