@@ -10,8 +10,8 @@
 
 Zodactive Form aims to provide very simple form reactivity
 based on the Zod validation library. This package wraps
-@zodactive-form/core to work with Vue's reactivity and
-provides simple example components.
+[@zodactive-form/core](https://npmjs.com/package/@zodactive-form/core)
+to work with Vue's reactivity and provides simple example components.
 
 [![npm][npm]][npm-url]
 [![size][size]][size-url]
