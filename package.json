@@ -3,9 +3,7 @@
 	"version": "0.0.7",
 	"author": "CedSharp <cedsharp@outlook.com>",
 	"type": "module",
-	"files": [
-		"dist"
-	],
+	"files": ["dist"],
 	"main": "./dist/zodactive-vue.umd.js",
 	"module": "./dist/zodactive-vue.js",
 	"exports": {
@@ -31,7 +29,7 @@
 		"zod": "^3.23.8"
 	},
 	"dependencies": {
-		"@zodactive-form/core": "^0.0.13"
+		"@zodactive-form/core": "^0.1.1"
 	},
 	"devDependencies": {
 		"@testing-library/vue": "^8.1.0",
