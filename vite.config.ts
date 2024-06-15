@@ -12,13 +12,7 @@ export default defineConfig({
         format === "es" ? "zodactive-vue.js" : `zodactive-vue.${format}.js`,
     },
     rollupOptions: {
-      external: ["vue", "zod"],
-      output: {
-        globals: {
-          vue: "Vue",
-          zod: "zod",
-        },
-      },
+      external: ["vue", "zod", "@zodactive-form/core"],
     },
   },
   resolve: {
